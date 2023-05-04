@@ -1,6 +1,7 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
 import ChefDetails from "../ChefDetails/ChefDetails";
+import Footer from "../Shared/Footer/Footer";
 import NavigationBar from "../Shared/NavigationBar/NavigationBar";
 
 const Recipes = () => {
@@ -8,7 +9,7 @@ const Recipes = () => {
     <div>
       <div>
         <Outlet></Outlet>
-        <div className="grid md:grid-cols-2 grid-cols-1 "></div>
+        <Footer></Footer>
       </div>
     </div>
   );

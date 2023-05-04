@@ -11,7 +11,7 @@ const ChefDetails = () => {
 
   return (
     <div>
-      <section>
+      <section className="">
         <div className="banner-image2">
             <NavigationBar></NavigationBar>
           <div className="  flex items-center justify-center h-full w-full md:flex max-w-[1400px]  mx-auto  md:items-center md:justify-between flex-wrap-reverse   ">
@@ -65,10 +65,10 @@ const ChefDetails = () => {
         </div>
       </section>
 
-      <div className="grid grid-cols-2 gap-6 max-w-[1400px] mx-auto">
-        {recipes.map((food) => (
+      <div className="grid md:grid-cols-2 gap-6 max-w-[1400px] mx-auto mt-28">
+        {recipes.map((recipe) => (
           <div className="">
-            <RecipeCard food={food}></RecipeCard>
+            <RecipeCard recipe={recipe}></RecipeCard>
           </div>
         ))}
       </div>

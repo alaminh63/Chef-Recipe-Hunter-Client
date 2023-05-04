@@ -1,9 +1,10 @@
 import React from "react";
 
-const RecipeCard = () => {
+const RecipeCard = ({ recipe }) => {
+  const { recipeName, cookingMethod, foodRanking } = recipe;
   return (
     <div>
-      <section className="shadow-xl mt-16 mx-auto md:max-w-[1200px] ">
+      <section className="shadow-xl mt-0 mx-auto md:max-w-[1200px] ">
         <div className="card lg:card-side bg-base-100 flex mx-auto lg:max-w-[1200px] max-w-[360px] bg-gradient-to-r from-stone-500 to-orange-300">
           <figure className="">
             <img
@@ -32,10 +33,12 @@ const RecipeCard = () => {
 
               <div className="mt-4 md:mx-4 md:mt-0">
                 <h1 className="text-2xl font-semibold text-gray-700 capitalize dark:text-white">
-                  Zero Configrations
+                  {recipeName}
                 </h1>
 
-                <p className="mt-3 text-gray-500 dark:text-gray-300">Lorem</p>
+                <p className="mt-3 text-gray-500 dark:text-gray-300">
+                  {cookingMethod}
+                </p>
               </div>
             </div>
           </div>
