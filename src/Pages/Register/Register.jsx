@@ -1,11 +1,16 @@
 import React from "react";
+import { useState } from "react";
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import Logo from "../../../public/LoginPageLogo.png";
 import { AuthContext } from "../../Contexts/AuthContexts";
 
 const Register = () => {
-  const { createUser, SignInWithGooglePopup, signInWithGitHub } =
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
+  
+
+  const { createUser, setUser, SignInWithGooglePopup, signInWithGitHub } =
     useContext(AuthContext);
 
   const handleGitHub = () => {
@@ -13,9 +18,15 @@ const Register = () => {
       .then((result) => {
         const loggedUser = result.user;
         console.log(loggedUser);
+        setError("");
+        setUser(null);
+        setSuccess("Acount Success ");
+        
       })
       .catch((error) => {
         console.error(error);
+        setSuccess("");
+        setError(error.message);
       });
   };
 
@@ -24,9 +35,14 @@ const Register = () => {
       .then((result) => {
         const loggedUser = result.user;
         console.log(loggedUser);
+        setError("");
+        setUser(null);
+        setSuccess("Acount Create Success");
       })
       .catch((error) => {
         console.error(error);
+        setSuccess("");
+        setError(error.message);
       });
   };
 
@@ -38,13 +54,22 @@ const Register = () => {
     const photoUrl = form.photoUrl.value;
     const userName = form.userName.value;
 
+    if (password.length < 6) {
+      return setError("Password Atleast 6 Character Long");
+    }
+
     createUser(email, password)
       .then((result) => {
         const loggedUser = result.user;
         console.log(loggedUser);
+        setError("");
+        setUser(null);
+        setSuccess("Acount Create Success");
       })
       .catch((error) => {
         console.error(error);
+        setSuccess("");
+        setError(error.message);
       });
   };
   return (
@@ -78,11 +103,13 @@ const Register = () => {
                   className="rounded-3xl border-none  focus:bg-slate-500   bg-yellow-400 bg-opacity-50 px-6 py-2 text-center text-inherit placeholder-slate-200 shadow-lg outline backdrop-blur-md"
                   type="text"
                   name="photoUrl"
+                  required
                   placeholder="Photo URL -example.com"
                 />
               </div>
               <div className="mb-4 text-lg">
                 <input
+                  required
                   className="rounded-3xl border-none  focus:bg-slate-500   bg-yellow-400 bg-opacity-50 px-6 py-2 text-center text-inherit placeholder-slate-200 shadow-lg outline backdrop-blur-md"
                   type="email"
                   name="email"
@@ -92,12 +119,19 @@ const Register = () => {
 
               <div className="mb-4 text-lg">
                 <input
+                  required
                   className="rounded-3xl border-none focus:bg-slate-500  bg-yellow-400 bg-opacity-50 px-6 py-2 text-center text-inherit placeholder-slate-200 shadow-lg outline backdrop-blur-md"
                   type="Password"
                   name="password"
                   placeholder="*********"
                 />
               </div>
+
+              <div>
+                <p className="text-center ">{error}</p>
+                <p className="text-center ">{success}</p>
+              </div>
+
               <div className="mt-8 flex justify-center text-lg text-black">
                 <button
                   type="submit"
@@ -108,9 +142,11 @@ const Register = () => {
               </div>
             </form>
             <div className="grid grid-cols mt-5">
-              <p className="transition duration-200 w-full py-2. rounded-lg text-sm shadow-sm hover:shadow-lg hover:bg-green-600 font-normal text-center">
-                <Link to="/login">Already Have An Account?</Link>
-              </p>
+              <Link to="/login">
+                <p className="transition duration-200 w-full py-2. rounded-lg text-sm shadow-sm hover:shadow-lg hover:bg-green-600 font-normal text-center">
+                  Already Have An Account?
+                </p>
+              </Link>
             </div>
             <div className="grid grid-cols mt-5">
               <p className="text-center">
@@ -131,6 +167,7 @@ const Register = () => {
                 type="button"
                 className="transition duration-200 border border-gray-200  w-full py-2.5 rounded-lg text-sm shadow-sm hover:bg-green-600 hover:shadow-md font-normal text-center inline-block"
               >
+                
                 Github
               </button>
             </div>

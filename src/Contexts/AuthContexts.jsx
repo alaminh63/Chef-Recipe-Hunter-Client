@@ -57,7 +57,8 @@ const AuthContexts = ({ children }) => {
     logOut,
     loading,
     SignInWithGooglePopup,
-    signInWithGitHub
+    signInWithGitHub,
+    setUser,
   };
 
   return (

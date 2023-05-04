@@ -1,20 +1,42 @@
-import React from "react";
+import React, { useState } from "react";
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 
 import Logo from "../../../public/LoginPageLogo.png";
 import { AuthContext } from "../../Contexts/AuthContexts";
 const Login = () => {
-  const { loginUser, SignInWithGooglePopup } = useContext(AuthContext);
+  const { loginUser, SignInWithGooglePopup, signInWithGitHub } =
+    useContext(AuthContext);
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
+
+  const handleGitHub = () => {
+    signInWithGitHub()
+      .then((result) => {
+        const loggedUser = result.user;
+        console.log(loggedUser);
+        setError("");
+        setSuccess("Login Success Full");
+      })
+      .catch((error) => {
+        console.error(error);
+        setSuccess("");
+        setError(error.message);
+      });
+  };
 
   const handleGoogle = () => {
     SignInWithGooglePopup()
       .then((result) => {
         const loggedUser = result.user;
         console.log(loggedUser);
+        setError("");
+        setSuccess("Login Success Full");
       })
       .catch((error) => {
         console.error(error);
+        setSuccess("");
+        setError(error.message);
       });
   };
 
@@ -24,13 +46,21 @@ const Login = () => {
     const email = form.email.value;
     const password = form.password.value;
 
+    if (password.length < 6) {
+      return setError("Password Atleast 6 Character Long");
+    }
+
     loginUser(email, password)
       .then((result) => {
         const loggedUser = result.user;
         console.log(loggedUser);
+        setError("");
+        setSuccess("Login Success Full");
       })
       .catch((error) => {
-        console.error(error);
+        console.error(error.message);
+        setSuccess("");
+        setError(error.message);
       });
   };
   return (
@@ -53,6 +83,7 @@ const Login = () => {
             <form action="#">
               <div className="mb-4 text-lg">
                 <input
+                  required
                   className="rounded-3xl border-none  focus:bg-slate-500   bg-yellow-400 bg-opacity-50 px-6 py-2 text-center text-inherit placeholder-slate-200 shadow-lg outline backdrop-blur-md"
                   type="email"
                   name="email"
@@ -62,16 +93,23 @@ const Login = () => {
 
               <div className="mb-4 text-lg">
                 <input
+                  required
                   className="rounded-3xl border-none focus:bg-slate-500  bg-yellow-400 bg-opacity-50 px-6 py-2 text-center text-inherit placeholder-slate-200 shadow-lg outline backdrop-blur-md"
                   type="Password"
                   name="password"
                   placeholder="*********"
                 />
               </div>
+
+              <div>
+                <p className="text-center ">{error}</p>
+                <p className="text-center ">{success}</p>
+              </div>
+
               <div className="mt-8 flex justify-center text-lg text-black">
                 <button
                   type="submit"
-                  className=" rounded-3xl bg-yellow-400 bg-opacity-50 px-10 py-2 text-white shadow-xl backdrop-blur-md outline transition-colors duration-300 hover:bg-green-600"
+                  className=" rounded-3xl bg-green-500 bg-opacity-50 px-10 py-2 text-white shadow-xl backdrop-blur-md outline transition-colors duration-100 hover:bg-green-600"
                 >
                   Login
                 </button>
@@ -87,6 +125,7 @@ const Login = () => {
                 Google
               </button>
               <button
+                onClick={handleGitHub}
                 type="button"
                 className="transition duration-200 border border-gray-200  w-full py-2.5 rounded-lg text-sm shadow-sm hover:bg-green-600 hover:shadow-md font-normal text-center inline-block"
               >
@@ -95,9 +134,11 @@ const Login = () => {
             </div>
 
             <div className="grid grid-cols mt-5">
-              <p className="transition duration-200 w-full py-2.5 rounded-lg text-sm shadow-sm hover:shadow-lg hover:bg-green-600 font-normal text-center">
-                <Link to="/register">Didn't Have An Account?</Link>
-              </p>
+              <Link to="/register">
+                <button className="transition duration-200 w-full py-2.5 rounded-lg text-sm shadow-sm hover:shadow-lg hover:bg-green-600 font-normal text-center">
+                  Didn't Have An Account?
+                </button>
+              </Link>
             </div>
           </div>
         </div>
