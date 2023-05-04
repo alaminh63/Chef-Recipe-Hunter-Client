@@ -1,8 +1,11 @@
 import React from "react";
-import { FaArrowRight, FaEye, FaRadiationAlt } from "react-icons/fa";
+import { FcLike } from "react-icons/fc";
+import { Link, useLoaderData } from "react-router-dom";
 
 const Cards = ({ info }) => {
-  const { name, bannerUrl, recipes, profileUrl, likes, experienceYears } = info;
+  const { name, id, bannerUrl, recipes, profileUrl, likes, experienceYears } =
+    info;
+
   return (
     <div className="card h-full w-96  bg-base-100 shadow-xl ">
       <figure>
@@ -18,20 +21,21 @@ const Cards = ({ info }) => {
       <div className="card-body bg-gradient-to-t from-purple-300 ">
         <h2 className="card-title text-red-600">Name: {name}</h2>
         <p className="text-red-700">Experience: {experienceYears} Year</p>
-        <p className="text-red-700">Likes:{likes}</p>
-        <p className="text-red-700">
+        <p className="text-red-700 flex items-center">
+          <FcLike />
+          {likes}
+        </p>
+        <p className="text-red-700 ">
           Completed Recipe: {recipes.numberOfRecipes}
         </p>
         <div className="card-actions justify-end">
-          <a
-            target="_blank"
-            href="food://food/1001"
-            class="block mt-5 w-full px-4 py-3 font-medium tracking-wide text-center capitalize transition-colors duration-300 transform bg-[#FFC933] rounded-[14px] hover:bg-[#FFC933DD] focus:outline-none focus:ring focus:ring-teal-300 focus:ring-opacity-80"
-          >
-            View Recipes
-          </a>
+          <button class="block mt-5 w-full px-4 py-3 font-medium tracking-wide text-center capitalize transition-colors duration-300 transform bg-[#FFC933] rounded-[14px] hover:bg-[#FFC933DD] focus:outline-none focus:ring focus:ring-teal-300 focus:ring-opacity-80">
+            <Link to={`/information/${id}`}>View Recipes</Link>
+          </button>
         </div>
       </div>
+
+    
     </div>
   );
 };

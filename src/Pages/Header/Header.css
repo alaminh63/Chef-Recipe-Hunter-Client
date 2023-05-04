@@ -4,3 +4,9 @@
   height: 700px;
   background-size: cover;
 }
+.banner-image2 {
+  background-image: url("https://images.pexels.com/photos/1482803/pexels-photo-1482803.jpeg?auto=compress&cs=tinysrgb&w=100%&h=100%&dpr=1");
+  background-repeat: no-repeat;
+  height: 700px;
+  background-size: cover;
+}

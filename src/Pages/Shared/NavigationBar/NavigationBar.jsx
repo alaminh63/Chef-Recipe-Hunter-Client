@@ -13,7 +13,7 @@ const NavigationBar = () => {
       });
   };
   return (
-    <div className="navbar bg-base-100 bg-black  text-white">
+    <div className="navbar bg-base-100  bg-transparent text-white">
       <div className="navbar max-w-[1200px] mx-auto">
         <div className="navbar-start ">
           <div className="dropdown">

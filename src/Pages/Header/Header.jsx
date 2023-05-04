@@ -8,6 +8,7 @@ const Header = () => {
   return (
     <div>
       <div className="banner-image ">
+        <NavigationBar></NavigationBar>
         <div className=" md:max-w-[1200px] mx-auto flex items-center justify-center h-full w-full md:flex  md:items-center md:justify-between flex-wrap-reverse   ">
           <div class="stats  drop-shadow-2xl	 shadow-lg shadow-blue-700/50 bg-gradient-to-r text-white from-blue-700 to-purple-900    ">
             <div class="grid grid-cols-1 gap-4sm:grid-cols-2 md:grid-cols-3 ">
