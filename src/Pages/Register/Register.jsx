@@ -10,8 +10,13 @@ const Register = () => {
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
 
-  const { createUser, setUser, SignInWithGooglePopup, signInWithGitHub } =
-    useContext(AuthContext);
+  const {
+    createUser,
+    setUser,
+    SignInWithGooglePopup,
+    signInWithGitHub,
+    profileInfoUpdate,
+  } = useContext(AuthContext);
 
   const handleGitHub = () => {
     signInWithGitHub()
@@ -50,8 +55,10 @@ const Register = () => {
     const form = event.target;
     const email = form.email.value;
     const password = form.password.value;
-    const photoUrl = form.photoUrl.value;
-    const userName = form.userName.value;
+    const photoURL = form.photoURL.value;
+    const displayName = form.userName.value;
+
+    console.log(photoURL, displayName);
 
     if (password.length < 6) {
       return setError("Password Atleast 6 Character Long");
@@ -61,6 +68,11 @@ const Register = () => {
       .then((result) => {
         const loggedUser = result.user;
         console.log(loggedUser);
+        profileInfoUpdate(displayName, photoURL)
+          .then(console.log("info updated"))
+          .catch((error) => {
+            console.error(error);
+          });
         setError("");
         setUser(null);
         setSuccess("Acount Create Success");
@@ -82,10 +94,15 @@ const Register = () => {
             "url('https://images.pexels.com/photos/1414651/pexels-photo-1414651.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')",
         }}
       >
-        <div className="rounded-xl bg-gray-800 bg-opacity-50 px-16 py-10 shadow-lg backdrop-blur- max-sm:px-8">
+        <div className="rounded-xl bg-gray-800 bg-opacity-50 px-16 py-10 shadow-lg shadow-zinc-50 backdrop-blur- max-sm:px-8">
           <div className="text-white">
             <div className="mb-8 flex flex-col items-center">
-              <img src={Logo} width="180" alt="" srcset="" />
+              <img
+                src="https://raw.githubusercontent.com/AlaminHasanPro/g3-architects/main/LoginPageLogo.png"
+                width="180"
+                alt=""
+                srcset=""
+              />
               <h1 className="mb-2 text-2xl">Register Here</h1>
               <span className="text-gray-300">Enter Your Details</span>
             </div>
@@ -104,7 +121,7 @@ const Register = () => {
                     <input
                       className="rounded-3xl border-none  focus:bg-slate-500   bg-yellow-400 bg-opacity-50 px-6 py-2 text-center text-inherit placeholder-slate-200 shadow-lg outline backdrop-blur-md"
                       type="text"
-                      name="photoUrl"
+                      name="photoURL"
                       required
                       placeholder="Photo URL -example.com"
                     />

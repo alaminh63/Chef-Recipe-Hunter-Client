@@ -6,6 +6,7 @@ import "./ChefDetails.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { RiAddBoxFill } from "react-icons/ri";
+import LazyLoad from "react-lazy-load";
 
 const ChefDetails = () => {
   const information = useLoaderData();
@@ -27,16 +28,20 @@ const ChefDetails = () => {
   return (
     <div>
       <section className="">
+        
         <div className="banner-image2 ">
+     
           <NavigationBar></NavigationBar>
+      
           <div className="  flex items-center justify-center h-full w-full md:flex max-w-[1400px]  mx-auto  md:items-center md:justify-between flex-wrap-reverse   ">
             <div className="w-full">
               <div className="flex " style={{ height: "700px" }}>
-                <div className="flex ml-8 items-center  text-center lg:text-left px-8 md:px-12 lg:w-1/2">
+                <div className=" flex ml-8 items-center  text-center lg:text-left px-8 md:px-12 lg:w-1/2">
                   <div className="card w-[20rem] md:w-[30rem] bg-gradient-to-l from-slate-700 text-white  ">
                     <section className="h-full md:m-20 flex flex-col dark:bg-gray-700 shadow-xl">
                       <div className=" shadow-lg ">
                         <div className="flex flex-col items-center justify-evenly ">
+                          
                           <img
                             className="md:hidden ml-20 rounded-s-full h-[18rem] w-[15rem]"
                             src={profileUrl}
@@ -54,7 +59,8 @@ const ChefDetails = () => {
                         <div className="grid bg-gradient-to-l  from-purple-700 px-7 py-2 items-center justify-around grid-cols-3 gap-4 divide-x divide-solid">
                           <div className="col-span-1 flex flex-col items-center">
                             <span className="text-2xl text-font-bold flex items-center  dark:text-gray-500">
-                              {experienceYears} <RiAddBoxFill className=""></RiAddBoxFill>
+                              {experienceYears}{" "}
+                              <RiAddBoxFill className=""></RiAddBoxFill>
                             </span>
                             <span className=" font-medium text-center">
                               Years Experience
@@ -77,25 +83,30 @@ const ChefDetails = () => {
                     </section>
                   </div>
                 </div>
+
                 <div
                   className="lg:block  lg:w-1/2"
                   style={{
                     clipPath: "polygon(10% 0, 100% 0%, 100% 100%, 0 100%)",
                   }}
                 >
-                  <div
-                    className="h-full object-cover "
-                    style={{
-                      backgroundImage: `url(${profileUrl})`,
-                      backgroundRepeat: "no-repeat",
-                    }}
-                  >
-                    <div className="h-full "></div>
-                  </div>
+                  <LazyLoad className="h-full  ">
+                    <div 
+                      className="h-full threshold={0.95}  onContentVisible={() => {console.log('loaded!')}} object-cover is-visible LazyLoad "
+                      style={{
+                        backgroundImage: `url(${profileUrl})`,
+                        backgroundRepeat: "no-repeat",
+
+                        
+                      }}
+                    ></div>
+                    
+                  </LazyLoad>
                 </div>
               </div>
             </div>
           </div>
+          
         </div>
       </section>
 
@@ -208,7 +219,7 @@ const ChefDetails = () => {
         </div>
         <div className="card w-72 bg-base-100 shadow-xl image-full">
           <figure>
-            <img src={profileUrl} alt="Shoes" />
+            <img src='{profileUrl}' alt="Shoes" />
           </figure>
           <div className="card-body">
             <h2 className="card-title">Shoes!</h2>

@@ -60,6 +60,18 @@ const NavigationBar = () => {
           </ul>
         </div>
         <div className="navbar-end ">
+          <p>
+            {user && (
+              <span className="flex items-center gap-5">
+                {user?.displayName}{" "}
+                <img
+                  className="h-12 rounded-full"
+                  src={user?.photoURL}
+                  alt=""
+                />
+              </span>
+            )}
+          </p>
           {user ? (
             <Link onClick={handleLogout} className="btn mx-5">
               Log Out

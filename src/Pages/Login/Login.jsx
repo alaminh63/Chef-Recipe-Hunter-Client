@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useContext } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 
-import Logo from "../../../public/LoginPageLogo.png";
+
 import { AuthContext } from "../../Contexts/AuthContexts";
 import NavigationBar from "../Shared/NavigationBar/NavigationBar";
 const Login = () => {
@@ -81,10 +81,10 @@ const Login = () => {
             "url('https://images.pexels.com/photos/1414651/pexels-photo-1414651.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')",
         }}
       >
-        <div className="rounded-xl bg-gray-800 bg-opacity-50 px-16 py-10 shadow-lg backdrop-blur- max-sm:px-8">
+        <div className="rounded-xl bg-gray-800 bg-opacity-50 px-16 py-10 shadow-black drop-shadow-2xl shadow-md backdrop-blur- max-sm:px-8">
           <div className="text-white">
             <div className="mb-8 flex flex-col items-center">
-              <img src={Logo} width="180" alt="" srcset="" />
+              <img src='https://raw.githubusercontent.com/AlaminHasanPro/g3-architects/main/LoginPageLogo.png' width="180" alt="" srcset="" />
               <h1 className="mb-2 text-2xl">Login Here</h1>
               <span className="text-gray-300">Enter Your Details</span>
             </div>
