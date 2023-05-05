@@ -5,6 +5,8 @@ import { RouterProvider } from "react-router-dom";
 import router from "./Routes/Routes.jsx";
 import AuthContexts from "./Contexts/AuthContexts.jsx";
 
+
+
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <AuthContexts>

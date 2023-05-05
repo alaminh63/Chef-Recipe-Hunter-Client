@@ -1,14 +1,18 @@
 import React, { useState } from "react";
 import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 import Logo from "../../../public/LoginPageLogo.png";
 import { AuthContext } from "../../Contexts/AuthContexts";
+import NavigationBar from "../Shared/NavigationBar/NavigationBar";
 const Login = () => {
   const { loginUser, SignInWithGooglePopup, signInWithGitHub } =
     useContext(AuthContext);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
+  const location = useLocation();
+  const navigate = useNavigate();
+  const from = location.state?.from?.pathname || "/";
 
   const handleGitHub = () => {
     signInWithGitHub()
@@ -17,6 +21,7 @@ const Login = () => {
         console.log(loggedUser);
         setError("");
         setSuccess("Login Success Full");
+        navigate(from, { replace: true });
       })
       .catch((error) => {
         console.error(error);
@@ -32,6 +37,7 @@ const Login = () => {
         console.log(loggedUser);
         setError("");
         setSuccess("Login Success Full");
+        navigate(from, { replace: true });
       })
       .catch((error) => {
         console.error(error);
@@ -56,6 +62,7 @@ const Login = () => {
         console.log(loggedUser);
         setError("");
         setSuccess("Login Success Full");
+        navigate(from, { replace: true });
       })
       .catch((error) => {
         console.error(error.message);
@@ -65,6 +72,7 @@ const Login = () => {
   };
   return (
     <div>
+      <NavigationBar></NavigationBar>
       <div
         onSubmit={handleSubmit}
         className="flex h-screen w-full items-center justify-center bg-gray-900 bg-cover bg-no-repeat"
@@ -77,7 +85,7 @@ const Login = () => {
           <div className="text-white">
             <div className="mb-8 flex flex-col items-center">
               <img src={Logo} width="180" alt="" srcset="" />
-              <h1 className="mb-2 text-2xl">Register Here</h1>
+              <h1 className="mb-2 text-2xl">Login Here</h1>
               <span className="text-gray-300">Enter Your Details</span>
             </div>
             <form action="#">

@@ -32,12 +32,30 @@ const Header = () => {
             </div>
           </div>
 
-          <div>
-            <h1 className="text-4xl text-white ">
-              <span className="md:text-7xl text-5xl">Loved By You,</span>
+          <div className="text-center">
+            <h1 className="text-4xl font-bold text-white ">
+              <span className="md:text-7xl text-4xl">Loved By You,</span>
               <br />
-              <span>Cooked By Us</span>
+              <span className="md:text-5xl">Cooked By Us</span>
             </h1>
+            <div className="mt-2">
+              <span className="inline-block w-60 h-1 rounded-full bg-white"></span>
+              <span className="inline-block w-5 h-1 ml-1 rounded-full bg-white"></span>
+              <span className="inline-block w-3 h-1 ml-1 rounded-full bg-white"></span>
+              <span className="inline-block w-1 h-1 ml-1 rounded-full bg-white"></span>
+            </div>
+            <div className="text-white font-semibold italic text-2xl">
+              Authentic and Mouthwatering Recipes <br /> from the Best Indian
+              Chefs!
+            </div>
+            <div className="indicator">
+              <span className="indicator-item mt-5 p-3 badge badge-primary">
+                14k+clients
+              </span>
+              <button className="btn md:px-[8rem] mt-5 bg-gradient-to-r border-0 from-green-400 to-transparent ">
+                See Clients Reviews
+              </button>
+            </div>
           </div>
         </div>
       </div>

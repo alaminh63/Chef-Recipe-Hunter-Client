@@ -1,24 +1,55 @@
 import React from "react";
+import { useState } from "react";
+import { RiCheckboxBlankCircleFill, RiStarFill } from "react-icons/ri";
 
-const RecipeCard = ({ recipe }) => {
-  const { recipeName, cookingMethod, foodRanking } = recipe;
+const RecipeCard = ({ recipe, information, toasting }) => {
+  const { recipeName, cookingMethod, foodRanking, ingredients, recipesImage } =
+    recipe;
+  const { bannerUrl, profileUrl } = information;
+  const [clicked, setClicked] = useState(false);
   return (
     <div>
       <section className="shadow-xl mt-0 mx-auto md:max-w-[1200px] ">
         <div className="card lg:card-side bg-base-100 flex mx-auto lg:max-w-[1200px] max-w-[360px] bg-gradient-to-r from-stone-500 to-orange-300">
           <figure className="">
             <img
-              className="w-[18rem] h-[18rem]  object-cover xl:w-[20rem] xl:h-[20rem] angle-image "
-              src="https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=755&q=80"
-              alt=""
+              className="w-[18rem] h-[18rem]  object-cover xl:w-[100rem] xl:h-[26.5rem] angle-image "
+              src={recipesImage}
             />
           </figure>
           <div className="card-body">
             <div>
-              <h1 className="text-3xl font-semibold text-gray-800 capitalize lg:text-xl dark:text-white">
-                explore our <br /> awesome Components
-              </h1>
+              <div className="flex justify-between">
+                <div>
+                  <h1 className="text-3xl font-semibold text-gray-800 capitalize lg:text-3xl dark:text-white">
+                    {recipeName}
+                  </h1>
+                  <h2 className="flex items-center gap-1 text-xl">
+                    <RiStarFill></RiStarFill>
+                    {foodRanking}/10
+                  </h2>
+                </div>
 
+                <div>
+                  <div class="flex mx-auto mt-3 w-100 ">
+                    <button
+                      onClick={() => {
+                        setClicked(!clicked);
+                        toasting();
+                      }}
+                      className="p-2 shadow-lg flex items-center gap-2 text-center rounded-2xl tr-300 w-100 font-medium  bg-green-500  hover:bg-green-600 text-gray-50"
+                    >
+                      {!clicked ? (
+                        <span> Add Favorite </span>
+                      ) : (
+                        <span>Added</span>
+                      )}
+
+                      <RiCheckboxBlankCircleFill></RiCheckboxBlankCircleFill>
+                    </button>
+                  </div>
+                </div>
+              </div>
               <div className="mt-2">
                 <span className="inline-block w-20 h-1 rounded-full bg-blue-500"></span>
                 <span className="inline-block w-5 h-1 ml-1 rounded-full bg-blue-500"></span>
@@ -26,17 +57,21 @@ const RecipeCard = ({ recipe }) => {
                 <span className="inline-block w-1 h-1 ml-1 rounded-full bg-blue-500"></span>
               </div>
             </div>
-            <div className="md:flex md:items-start md:-mx-4">
-              <span className="inline-block p-2 text-blue-500 bg-blue-100 rounded-xl md:mx-4 dark:text-white dark:bg-blue-500">
-                LL
-              </span>
+            <div className="">
+              <div className="text-center border-1 rounded-2xl shadow-xl py-2 bg-gradient-to-l from-slate-400 border-rose-700">
+                <span className="text-2xl font-semibold">Ingredients:</span>
+                <span className="-2 flex gap-3 text-center text-black  rounded-xl md:mx-4 dark:text-white dark:bg-blue-500">
+                  {ingredients.map((i) => (
+                    <p>
+                      <li>{i}</li>
+                    </p>
+                  ))}
+                </span>
+              </div>
 
-              <div className="mt-4 md:mx-4 md:mt-0">
-                <h1 className="text-2xl font-semibold text-gray-700 capitalize dark:text-white">
-                  {recipeName}
-                </h1>
-
-                <p className="mt-3 text-gray-500 dark:text-gray-300">
+              <div className="py-5 text-center md:mx-4 md:mt-0">
+                <p className="text-2xl underline">Cooking Method</p>
+                <p className="mt-3 text-center text-black-500 dark:text-gray-300">
                   {cookingMethod}
                 </p>
               </div>

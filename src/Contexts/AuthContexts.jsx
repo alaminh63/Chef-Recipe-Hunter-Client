@@ -24,26 +24,32 @@ const AuthContexts = ({ children }) => {
   const gitProvider = new GithubAuthProvider();
 
   const signInWithGitHub = () => {
+    setLoading(true);
     return signInWithPopup(Auth, gitProvider);
   };
 
   const SignInWithGooglePopup = () => {
+    setLoading(true);
     return signInWithPopup(Auth, provider);
   };
 
   const createUser = (email, password) => {
+    setLoading(true);
     return createUserWithEmailAndPassword(Auth, email, password);
   };
   const loginUser = (email, password) => {
+    setLoading(true);
     return signInWithEmailAndPassword(Auth, email, password);
   };
   const logOut = () => {
+    setLoading(true);
     return signOut(Auth);
   };
 
   useEffect(() => {
     const unSubscribe = onAuthStateChanged(Auth, (currentUser) => {
       setUser(currentUser);
+      setLoading(false);
     });
     return () => {
       unSubscribe();

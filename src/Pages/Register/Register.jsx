@@ -4,11 +4,11 @@ import { useContext } from "react";
 import { Link } from "react-router-dom";
 import Logo from "../../../public/LoginPageLogo.png";
 import { AuthContext } from "../../Contexts/AuthContexts";
+import NavigationBar from "../Shared/NavigationBar/NavigationBar";
 
 const Register = () => {
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
-  
 
   const { createUser, setUser, SignInWithGooglePopup, signInWithGitHub } =
     useContext(AuthContext);
@@ -21,7 +21,6 @@ const Register = () => {
         setError("");
         setUser(null);
         setSuccess("Acount Success ");
-        
       })
       .catch((error) => {
         console.error(error);
@@ -74,6 +73,7 @@ const Register = () => {
   };
   return (
     <div>
+      <NavigationBar></NavigationBar>
       <div
         onSubmit={handleSubmit}
         className="flex h-screen w-full items-center justify-center bg-gray-900 bg-cover bg-no-repeat"
@@ -90,87 +90,90 @@ const Register = () => {
               <span className="text-gray-300">Enter Your Details</span>
             </div>
             <form action="#">
-              <div className="mb-4 text-lg">
-                <input
-                  className="rounded-3xl border-none  focus:bg-slate-500   bg-yellow-400 bg-opacity-50 px-6 py-2 text-center text-inherit placeholder-slate-200 shadow-lg outline backdrop-blur-md  "
-                  type="text"
-                  name="userName"
-                  placeholder="Your Name"
-                />
-              </div>
-              <div className="mb-4 text-lg">
-                <input
-                  className="rounded-3xl border-none  focus:bg-slate-500   bg-yellow-400 bg-opacity-50 px-6 py-2 text-center text-inherit placeholder-slate-200 shadow-lg outline backdrop-blur-md"
-                  type="text"
-                  name="photoUrl"
-                  required
-                  placeholder="Photo URL -example.com"
-                />
-              </div>
-              <div className="mb-4 text-lg">
-                <input
-                  required
-                  className="rounded-3xl border-none  focus:bg-slate-500   bg-yellow-400 bg-opacity-50 px-6 py-2 text-center text-inherit placeholder-slate-200 shadow-lg outline backdrop-blur-md"
-                  type="email"
-                  name="email"
-                  placeholder="address@email.com"
-                />
-              </div>
+              <div className="grid md:grid-cols-2 items-center gap-8 ">
+                <div>
+                  <div className="mb-4 text-lg">
+                    <input
+                      className="rounded-3xl border-none  focus:bg-slate-500   bg-yellow-400 bg-opacity-50 px-6 py-2 text-center text-inherit placeholder-slate-200 shadow-lg outline backdrop-blur-md  "
+                      type="text"
+                      name="userName"
+                      placeholder="Your Name"
+                    />
+                  </div>
+                  <div className="mb-4 text-lg">
+                    <input
+                      className="rounded-3xl border-none  focus:bg-slate-500   bg-yellow-400 bg-opacity-50 px-6 py-2 text-center text-inherit placeholder-slate-200 shadow-lg outline backdrop-blur-md"
+                      type="text"
+                      name="photoUrl"
+                      required
+                      placeholder="Photo URL -example.com"
+                    />
+                  </div>
+                  <div className="mb-4 text-lg">
+                    <input
+                      required
+                      className="rounded-3xl border-none  focus:bg-slate-500   bg-yellow-400 bg-opacity-50 px-6 py-2 text-center text-inherit placeholder-slate-200 shadow-lg outline backdrop-blur-md"
+                      type="email"
+                      name="email"
+                      placeholder="address@email.com"
+                    />
+                  </div>
+                  <div className="mb-4 text-lg">
+                    <input
+                      required
+                      className="rounded-3xl border-none focus:bg-slate-500  bg-yellow-400 bg-opacity-50 px-6 py-2 text-center text-inherit placeholder-slate-200 shadow-lg outline backdrop-blur-md"
+                      type="Password"
+                      name="password"
+                      placeholder="*********"
+                    />
+                  </div>
+                  <div>
+                    <p className="text-center ">{error}</p>
+                    <p className="text-center ">{success}</p>
+                  </div>
+                  <div className="grid grid-cols mt-5">
+                    <Link to="/login">
+                      <p className="transition duration-200 w-full py-2. rounded-lg text-sm shadow-sm hover:shadow-lg hover:bg-green-600 font-normal text-center">
+                        Already Have An Account?
+                      </p>
+                    </Link>
+                  </div>
+                </div>
+                <div>
+                  <div className="flex justify-center text-lg text-black">
+                    <button
+                      type="submit"
+                      className=" rounded-3xl bg-green-400 bg-opacity-50 px-10 py-2 text-white shadow-xl backdrop-blur-md outline transition-colors duration-300 hover:bg-green-600"
+                    >
+                      Register
+                    </button>
+                  </div>
 
-              <div className="mb-4 text-lg">
-                <input
-                  required
-                  className="rounded-3xl border-none focus:bg-slate-500  bg-yellow-400 bg-opacity-50 px-6 py-2 text-center text-inherit placeholder-slate-200 shadow-lg outline backdrop-blur-md"
-                  type="Password"
-                  name="password"
-                  placeholder="*********"
-                />
-              </div>
-
-              <div>
-                <p className="text-center ">{error}</p>
-                <p className="text-center ">{success}</p>
-              </div>
-
-              <div className="mt-8 flex justify-center text-lg text-black">
-                <button
-                  type="submit"
-                  className=" rounded-3xl bg-green-400 bg-opacity-50 px-10 py-2 text-white shadow-xl backdrop-blur-md outline transition-colors duration-300 hover:bg-green-600"
-                >
-                  Register
-                </button>
+                  <div className="grid grid-cols mt-5">
+                    <p className="text-center">
+                      <p>Or</p>
+                      Sign In With
+                    </p>
+                  </div>
+                  <div className="grid grid-cols-2 gap-1 mt-8">
+                    <button
+                      onClick={handleGoogle}
+                      type="button"
+                      className="transition duration-200 border border-gray-200 w-full py-2.5 rounded-lg text-sm shadow-sm hover:bg-green-600  hover:shadow-md font-normal text-center inline-block"
+                    >
+                      Google
+                    </button>
+                    <button
+                      onClick={handleGitHub}
+                      type="button"
+                      className="transition duration-200 border border-gray-200  w-full py-2.5 rounded-lg text-sm shadow-sm hover:bg-green-600 hover:shadow-md font-normal text-center inline-block"
+                    >
+                      Github
+                    </button>
+                  </div>
+                </div>
               </div>
             </form>
-            <div className="grid grid-cols mt-5">
-              <Link to="/login">
-                <p className="transition duration-200 w-full py-2. rounded-lg text-sm shadow-sm hover:shadow-lg hover:bg-green-600 font-normal text-center">
-                  Already Have An Account?
-                </p>
-              </Link>
-            </div>
-            <div className="grid grid-cols mt-5">
-              <p className="text-center">
-                <p>Or</p>
-                Sign In With
-              </p>
-            </div>
-            <div className="grid grid-cols-2 gap-1 mt-8">
-              <button
-                onClick={handleGoogle}
-                type="button"
-                className="transition duration-200 border border-gray-200 w-full py-2.5 rounded-lg text-sm shadow-sm hover:bg-green-600  hover:shadow-md font-normal text-center inline-block"
-              >
-                Google
-              </button>
-              <button
-                onClick={handleGitHub}
-                type="button"
-                className="transition duration-200 border border-gray-200  w-full py-2.5 rounded-lg text-sm shadow-sm hover:bg-green-600 hover:shadow-md font-normal text-center inline-block"
-              >
-                
-                Github
-              </button>
-            </div>
           </div>
         </div>
       </div>

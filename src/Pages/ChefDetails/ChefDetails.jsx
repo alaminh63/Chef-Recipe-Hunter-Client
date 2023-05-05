@@ -3,45 +3,78 @@ import { Link, useLoaderData } from "react-router-dom";
 import RecipeCard from "../RecipeCard/RecipeCard";
 import NavigationBar from "../Shared/NavigationBar/NavigationBar";
 import "./ChefDetails.css";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { RiAddBoxFill } from "react-icons/ri";
+
 const ChefDetails = () => {
   const information = useLoaderData();
-  const { name, id, bannerUrl, recipes, profileUrl, likes, experienceYears } =
-    information;
+  const {
+    name,
+    bannerUrl,
+    recipes,
+    profileUrl,
+    likes,
+    experienceYears,
+    numberOfRecipes,
+    shortBio,
+  } = information;
   console.log(recipes);
+  const toasting = () => {
+    toast("Added In Favorite");
+  };
 
   return (
     <div>
       <section className="">
-        <div className="banner-image2">
-            <NavigationBar></NavigationBar>
+        <div className="banner-image2 ">
+          <NavigationBar></NavigationBar>
           <div className="  flex items-center justify-center h-full w-full md:flex max-w-[1400px]  mx-auto  md:items-center md:justify-between flex-wrap-reverse   ">
             <div className="w-full">
               <div className="flex " style={{ height: "700px" }}>
-                <div className="flex items-center  text-center lg:text-left px-8 md:px-12 lg:w-1/2">
-                  <div>
-                    <h2 className="text-3xl font-semibold text-white md:text-7xl">
-                      Build Your New <span className="text-white">Idea</span>
-                    </h2>
-                    <p className="mt-2 text-sm text-white md:text-base">
-                      Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                      Blanditiis commodi cum cupiditate ducimus, fugit harum id
-                      necessitatibus odio quam quasi, quibusdam rem tempora
-                      voluptates. Cumque debitis dignissimos id quam vel!
-                    </p>
-                    <div className="flex justify-center lg:justify-start mt-6">
-                      <a
-                        className="px-4 py-3 bg-blue-900 text-gray-200 text-xs font-semibold rounded hover:bg-gray-800"
-                        href="#"
-                      >
-                        Get Started
-                      </a>
-                      <a
-                        className="mx-4 px-4 py-3 bg-gray-300 text-gray-900 text-xs font-semibold rounded hover:bg-gray-400"
-                        href="#"
-                      >
-                        Learn More
-                      </a>
-                    </div>
+                <div className="flex ml-8 items-center  text-center lg:text-left px-8 md:px-12 lg:w-1/2">
+                  <div className="card w-[20rem] md:w-[30rem] bg-gradient-to-l from-slate-700 text-white  ">
+                    <section className="h-full md:m-20 flex flex-col dark:bg-gray-700 shadow-xl">
+                      <div className=" shadow-lg ">
+                        <div className="flex flex-col items-center justify-evenly ">
+                          <img
+                            className="md:hidden ml-20 rounded-s-full h-[18rem] w-[15rem]"
+                            src={profileUrl}
+                          />
+                          <div>
+                            <span className="text-h1 text-3xl   font-bold">
+                              {name}
+                            </span>
+                          </div>
+                          <div className="  md:my-6  bg-gradient-to-l from-emerald-500 py-5 rounded-3xl px-5 ">
+                            <span>{shortBio}</span>
+                          </div>
+                        </div>
+
+                        <div className="grid bg-gradient-to-l  from-purple-700 px-7 py-2 items-center justify-around grid-cols-3 gap-4 divide-x divide-solid">
+                          <div className="col-span-1 flex flex-col items-center">
+                            <span className="text-2xl text-font-bold flex items-center  dark:text-gray-500">
+                              {experienceYears} <RiAddBoxFill className=""></RiAddBoxFill>
+                            </span>
+                            <span className=" font-medium text-center">
+                              Years Experience
+                            </span>
+                          </div>
+                          <div className="col-span-1px-3 text-center flex flex-col items-center">
+                            <span className="text-2xl font-bold dark:text-gray-500">
+                              {numberOfRecipes}
+                            </span>
+                            <span className="font-medium">Best Recipe</span>
+                          </div>
+                          <div className="col-span-1 px-3 text-center flex flex-col items-center">
+                            <span className="text-2xl font-bold dark:text-gray-500">
+                              {likes}
+                            </span>
+                            <span className="font-medium">Likes</span>
+                          </div>
+                        </div>
+                      </div>
+                    </section>
                   </div>
                 </div>
                 <div
@@ -51,12 +84,13 @@ const ChefDetails = () => {
                   }}
                 >
                   <div
-                    className="h-full object-cover"
+                    className="h-full object-cover "
                     style={{
-                      backgroundImage: `url(${bannerUrl})`,
+                      backgroundImage: `url(${profileUrl})`,
+                      backgroundRepeat: "no-repeat",
                     }}
                   >
-                    <div className="h-full bg-black opacity-25"></div>
+                    <div className="h-full "></div>
                   </div>
                 </div>
               </div>
@@ -65,12 +99,137 @@ const ChefDetails = () => {
         </div>
       </section>
 
-      <div className="grid md:grid-cols-2 gap-6 max-w-[1400px] mx-auto mt-28">
+      <div className="grid grid-cols gap-10 max-w-[1400px] mx-auto mt-28">
+        <h2 className=" text-4xl text-center  font-bold underline bottom-1">
+          Best Recipes
+        </h2>
         {recipes.map((recipe) => (
           <div className="">
-            <RecipeCard recipe={recipe}></RecipeCard>
+            <RecipeCard
+              information={information}
+              toasting={toasting}
+              recipe={recipe}
+            ></RecipeCard>
           </div>
         ))}
+      </div>
+
+      <section className="h-full flex flex-col bg-gray-100 dark:bg-gray-700 shadow-xl overflow-y-scroll">
+        <div className="grid rounded-2xl divide-y divide-dashed hover:divide-solid justify-evenly bg-gray-50 dark:bg-gray-300 m-3 mt-10 grid-cols-3">
+          <div className="col-span-1 p-3">
+            <div className="flex flex-col items-center">
+              <a href="">
+                <button className="tr-300">
+                  <span className="text-lg font-medium">Mi Perfil</span>
+                </button>
+              </a>
+            </div>
+          </div>
+          <div className="col-span-1 p-3">
+            <div className="flex flex-col items-center">
+              <a href="">
+                <button className="tr-300">
+                  <span className="text-lg font-medium">Mis dinero</span>
+                </button>
+              </a>
+            </div>
+          </div>
+          <div className="col-span-1 p-3">
+            <div className="flex flex-col items-center">
+              <a href="">
+                <button className="tr-300">
+                  <span className="text-lg font-medium">Mis referidos</span>
+                </button>
+              </a>
+            </div>
+          </div>
+          <div className="col-span-1 p-3">
+            <div className="flex flex-col items-center">
+              <a href="">
+                <button className="tr-300">
+                  <span className="text-lg font-medium">Mis facturas</span>
+                </button>
+              </a>
+            </div>
+          </div>
+          <div className="col-span-1 p-3">
+            <div className="flex flex-col items-center">
+              <a href="">
+                <button className="tr-300">
+                  <span className="text-lg font-medium">Ayuda</span>
+                </button>
+              </a>
+            </div>
+          </div>
+          <div className="col-span-1 bg-red-50 p-3">
+            <div className="flex flex-col items-center">
+              <a href="">
+                <button className="tr-300">
+                  <span className="text-lg font-medium">Salir</span>
+                </button>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="flex mx-auto mt-3 w-100 ">
+          <button
+            onClick={toasting}
+            className="p-2 shadow-lg rounded-2xl tr-300 w-100 font-medium  bg-green-500 rounded-md hover:bg-green-600 text-gray-50"
+          >
+            Mejorar membresía
+          </button>
+        </div>
+      </section>
+      <ToastContainer></ToastContainer>
+      <div className="grid md:grid-cols-4 my-8  md:max-w-[1200px] mx-auto">
+        <div className="card w-72 bg-base-100 shadow-xl image-full">
+          <figure>
+            <img src={profileUrl} alt="Shoes" />
+          </figure>
+          <div className="card-body">
+            <h2 className="card-title">Shoes!</h2>
+            <p>If a dog chews shoes whose shoes does he choose?</p>
+            <div className="card-actions justify-end">
+              <button className="btn btn-primary">Buy Now</button>
+            </div>
+          </div>
+        </div>
+        <div className="card w-72 bg-base-100 shadow-xl image-full">
+          <figure>
+            <img src={profileUrl} alt="Shoes" />
+          </figure>
+          <div className="card-body">
+            <h2 className="card-title">Shoes!</h2>
+            <p>If a dog chews shoes whose shoes does he choose?</p>
+            <div className="card-actions justify-end">
+              <button className="btn btn-primary">Buy Now</button>
+            </div>
+          </div>
+        </div>
+        <div className="card w-72 bg-base-100 shadow-xl image-full">
+          <figure>
+            <img src={profileUrl} alt="Shoes" />
+          </figure>
+          <div className="card-body">
+            <h2 className="card-title">Shoes!</h2>
+            <p>If a dog chews shoes whose shoes does he choose?</p>
+            <div className="card-actions justify-end">
+              <button className="btn btn-primary">Buy Now</button>
+            </div>
+          </div>
+        </div>
+        <div className="card w-72 bg-base-100 shadow-xl image-full">
+          <figure>
+            <img src={profileUrl} alt="Shoes" />
+          </figure>
+          <div className="card-body">
+            <h2 className="card-title">Shoes!</h2>
+            <p>If a dog chews shoes whose shoes does he choose?</p>
+            <div className="card-actions justify-end">
+              <button className="btn btn-primary">Buy Now</button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
