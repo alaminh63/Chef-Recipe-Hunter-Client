@@ -1,6 +1,6 @@
 # This is my project (Star-Chef)
 
-- Hosted in FireBase -> [Star Chef](https://big-chef-3df8d.web.app/)
+- Hosted in FireBase -> [Star Chef](https://chef-recipe-hunter-6651c.web.app)
 
 - Indian Chefs
 
