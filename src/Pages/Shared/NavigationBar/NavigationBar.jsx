@@ -1,6 +1,6 @@
 import React from "react";
 import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../../../Contexts/AuthContexts";
 import { FaUserCircle } from "react-icons/fa";
 import LazyLoad from "react-lazy-load";
@@ -45,11 +45,11 @@ const NavigationBar = () => {
               className="menu menu-compact dropdown-content   font-semibold mt-3 p-2 shadow bg-base-100 bg-transparent rounded-box w-52"
             >
               <li>
-                <Link to="/">Home</Link>
+                <NavLink className={({ isActive }) => isActive ? "text-red-700" : ""} to="/">Home</NavLink>
               </li>
 
               <li>
-                <Link to="/blog">Blogs</Link>
+                <NavLink  className={({ isActive }) => isActive ? "text-red-700" : ""} to="/blog">Blogs</NavLink>
               </li>
             </ul>
           </div>
@@ -64,17 +64,17 @@ const NavigationBar = () => {
         <div className="navbar-center text-xl font-semibold hidden lg:flex">
           <ul className="menu menu-horizontal px-1">
             <li>
-              <Link to="/">Home</Link>
+              <NavLink className={({ isActive }) => isActive ? "text-slate-700" : ""} to="/">Home</NavLink>
             </li>
 
             <li>
-              <Link to="/blog">Blogs</Link>
+              <NavLink className={({ isActive }) => isActive ? "text-slate-700" : ""} to="/blog">Blogs</NavLink>
             </li>
           </ul>
         </div>
         <div className="navbar-end ">
           <LazyLoad className="h-full   ">
-            <p className="">
+            <div className="">
               <div
                 className="tooltip  tooltip-left"
                 data-tip={user?.displayName}
@@ -85,7 +85,7 @@ const NavigationBar = () => {
                   user && <FaUserCircle className="h-12 w-12" />
                 )}
               </div>
-            </p>
+            </div>
           </LazyLoad>
           {user ? (
             <Link onClick={handleLogout} className="btn mx-5">

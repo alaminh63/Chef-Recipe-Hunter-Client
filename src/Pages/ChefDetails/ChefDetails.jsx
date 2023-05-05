@@ -114,12 +114,13 @@ const ChefDetails = () => {
         <h2 className=" text-4xl text-center  font-bold underline bottom-1">
           Best Recipes
         </h2>
-        {recipes.map((recipe) => (
+        {recipes.map((recipe, i) => (
           <div className="mb-5">
             <RecipeCard
               information={information}
               toasting={toasting}
               recipe={recipe}
+              key={i}
             ></RecipeCard>
           </div>
         ))}

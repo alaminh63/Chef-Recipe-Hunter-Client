@@ -1,14 +1,27 @@
+import jsPDF from "jspdf";
 import React from "react";
 import NavigationBar from "../Shared/NavigationBar/NavigationBar";
 
 const Blog = () => {
+  const downloadPdf = () => {
+    const doc = new jsPDF("landscape", "px", "a4", "false");
+    doc.text("This blog page short summary", 20, 30);
+
+    doc.text(
+      "In software development, there are two types of components: uncontrolled and controlled. \n Uncontrolled components rely on the browser or environment, while controlled components \n are managed by the application code.  React PropTypes is a way to \n validate props in components. \n Node.js is a runtime environment for executing JavaScript code outside of a web browser, primarily \n used for building server-side applications. \n Custom hooks are a useful tool in React for reusing logic across components.",
+      20,
+      50
+    );
+
+    doc.save("blog-information.pdf");
+  };
   return (
     <div>
       <NavigationBar></NavigationBar>
       <div className="md:max-w-[1200px] my-12 mx-auto">
-      <div className="text-3xl text-center font-bold pb-10 text-amber-600">
-        <h2>Question's Answer....</h2>
-      </div>
+        <div className="text-3xl text-center font-bold pb-10 text-amber-600">
+          <h2>Question's Answer....</h2>
+        </div>
         <div className="grid gap-8 grid-cols-2">
           <div className="bg-slate-200 p-10 rounded-xl">
             <h2 className="text-xl font-semibold  my-2 text-center text-amber-600">
@@ -71,6 +84,7 @@ const Blog = () => {
           </div>
         </div>
       </div>
+      <button onClick={downloadPdf}>Download PDF</button>
     </div>
   );
 };
