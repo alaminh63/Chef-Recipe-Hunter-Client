@@ -64,11 +64,11 @@ const NavigationBar = () => {
         <div className="navbar-center text-xl font-semibold hidden lg:flex">
           <ul className="menu menu-horizontal px-1">
             <li>
-              <NavLink className={({ isActive }) => isActive ? "text-slate-700" : ""} to="/">Home</NavLink>
+              <NavLink className={({ isActive }) => isActive ? "text-black" : ""} to="/">Home</NavLink>
             </li>
 
             <li>
-              <NavLink className={({ isActive }) => isActive ? "text-slate-700" : ""} to="/blog">Blogs</NavLink>
+              <NavLink className={({ isActive }) => isActive ? "text-black" : ""} to="/blog">Blogs</NavLink>
             </li>
           </ul>
         </div>

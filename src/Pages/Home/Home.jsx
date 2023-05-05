@@ -2,6 +2,7 @@ import React from "react";
 import { useLoaderData } from "react-router-dom";
 import Cards from "../Cards/Cards";
 import Header from "../Header/Header";
+import Trusted from "../Trusted/Trusted";
 
 const Home = () => {
   const information = useLoaderData();
@@ -89,6 +90,7 @@ const Home = () => {
           </button>
         </div>
       </section>
+      <Trusted></Trusted>
     </div>
   );
 };
