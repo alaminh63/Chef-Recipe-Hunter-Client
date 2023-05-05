@@ -115,7 +115,7 @@ const ChefDetails = () => {
           Best Recipes
         </h2>
         {recipes.map((recipe) => (
-          <div className="">
+          <div className="mb-5">
             <RecipeCard
               information={information}
               toasting={toasting}
@@ -125,72 +125,7 @@ const ChefDetails = () => {
         ))}
       </div>
 
-      <section className="h-full flex flex-col bg-gray-100 dark:bg-gray-700 shadow-xl overflow-y-scroll">
-        <div className="grid rounded-2xl divide-y divide-dashed hover:divide-solid justify-evenly bg-gray-50 dark:bg-gray-300 m-3 mt-10 grid-cols-3">
-          <div className="col-span-1 p-3">
-            <div className="flex flex-col items-center">
-              <a href="">
-                <button className="tr-300">
-                  <span className="text-lg font-medium">Mi Perfil</span>
-                </button>
-              </a>
-            </div>
-          </div>
-          <div className="col-span-1 p-3">
-            <div className="flex flex-col items-center">
-              <a href="">
-                <button className="tr-300">
-                  <span className="text-lg font-medium">Mis dinero</span>
-                </button>
-              </a>
-            </div>
-          </div>
-          <div className="col-span-1 p-3">
-            <div className="flex flex-col items-center">
-              <a href="">
-                <button className="tr-300">
-                  <span className="text-lg font-medium">Mis referidos</span>
-                </button>
-              </a>
-            </div>
-          </div>
-          <div className="col-span-1 p-3">
-            <div className="flex flex-col items-center">
-              <a href="">
-                <button className="tr-300">
-                  <span className="text-lg font-medium">Mis facturas</span>
-                </button>
-              </a>
-            </div>
-          </div>
-          <div className="col-span-1 p-3">
-            <div className="flex flex-col items-center">
-              <a href="">
-                <button className="tr-300">
-                  <span className="text-lg font-medium">Ayuda</span>
-                </button>
-              </a>
-            </div>
-          </div>
-          <div className="col-span-1 bg-red-50 p-3">
-            <div className="flex flex-col items-center">
-              <a href="">
-                <button className="tr-300">
-                  <span className="text-lg font-medium">Salir</span>
-                </button>
-              </a>
-            </div>
-          </div>
-        </div>
-        <div class="flex mx-auto mt-3 w-100 ">
-          <button
-            onClick={toasting}
-            className="p-2 shadow-lg rounded-2xl tr-300 w-100 font-medium  bg-green-500 rounded-md hover:bg-green-600 text-gray-50"
-          >
-            Mejorar membresía
-          </button>
-        </div>
-      </section>
+    
       <ToastContainer></ToastContainer>
      
     </div>

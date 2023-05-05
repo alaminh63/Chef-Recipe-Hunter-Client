@@ -13,20 +13,20 @@ const Header = () => {
           <div class="stats  drop-shadow-2xl	 shadow-lg shadow-blue-700/50 bg-gradient-to-r text-white from-blue-700 to-purple-900    ">
             <div class="grid grid-cols-1 gap-4sm:grid-cols-2 md:grid-cols-3 ">
               <div class="stat place-items-center">
-                <div class="">Downloads</div>
-                <div class="stat-value">31K</div>
+                <div class="">Services Event</div>
+                <div class="stat-value">334+</div>
                 <div class="stat-desc text-white">
                   From January 1st to February 1st
                 </div>
               </div>
               <div class="stat place-items-center">
-                <div class="">Users</div>
-                <div class="stat-value  ">4,200</div>
+                <div class="">Recipe Completed</div>
+                <div class="stat-value  ">4,270</div>
                 <div class="stat-desc   text-white">↗︎ 40 (2%)</div>
               </div>
               <div class="stat place-items-center">
-                <div class="">New Registers</div>
-                <div class="stat-value">1,200</div>
+                <div class="">New Resturants</div>
+                <div class="stat-value">143</div>
                 <div class="stat-desc  text-white"> 90 (14%)</div>
               </div>
             </div>

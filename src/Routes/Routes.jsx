@@ -1,4 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
+import Blog from "../Pages/Blog/Blog";
 import ChefDetails from "../Pages/ChefDetails/ChefDetails";
 import Header from "../Pages/Header/Header";
 import Home from "../Pages/Home/Home";
@@ -30,6 +31,10 @@ const router = createBrowserRouter([
       {
         path: "*",
         element: <NotFoundPage></NotFoundPage>,
+      },
+      {
+        path: "/blog",
+        element: <Blog></Blog>,
       },
     ],
   },

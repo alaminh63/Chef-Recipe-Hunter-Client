@@ -42,7 +42,7 @@ const NavigationBar = () => {
             </label>
             <ul
               tabIndex={0}
-              className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 bg-transparent rounded-box w-52"
+              className="menu menu-compact dropdown-content   font-semibold mt-3 p-2 shadow bg-base-100 bg-transparent rounded-box w-52"
             >
               <li>
                 <Link to="/">Home</Link>
@@ -53,9 +53,15 @@ const NavigationBar = () => {
               </li>
             </ul>
           </div>
-          <a className="btn btn-ghost normal-case text-xl">daisyUI</a>
+          <Link
+            to="/"
+            className="bg-gradient-to-r px-5 py-2 rounded-lg shadow from-blue-700 normal-case text-3xl font-bold"
+          >
+            <span className=""> Star-</span>
+            <span className="">Chef</span>
+          </Link>
         </div>
-        <div className="navbar-center hidden lg:flex">
+        <div className="navbar-center text-xl font-semibold hidden lg:flex">
           <ul className="menu menu-horizontal px-1">
             <li>
               <Link to="/">Home</Link>
