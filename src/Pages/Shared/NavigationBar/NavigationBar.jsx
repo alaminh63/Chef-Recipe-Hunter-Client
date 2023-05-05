@@ -2,6 +2,8 @@ import React from "react";
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../../Contexts/AuthContexts";
+import { FaUserCircle } from "react-icons/fa";
+import LazyLoad from "react-lazy-load";
 
 const NavigationBar = () => {
   const { user, logOut } = useContext(AuthContext);
@@ -11,6 +13,11 @@ const NavigationBar = () => {
       .catch((error) => {
         console.error(error);
       });
+  };
+
+  const lazyLoadStyle = {
+    opacity: 0,
+    transition: "all 2s ease-in-out",
   };
   return (
     <div className="navbar bg-gradient-to-r from-amber-600 bg-transparent text-white">
@@ -60,18 +67,20 @@ const NavigationBar = () => {
           </ul>
         </div>
         <div className="navbar-end ">
-          <p>
-            {user && (
-              <span className="flex items-center gap-5">
-                {user?.displayName}{" "}
-                <img
-                  className="h-12 rounded-full"
-                  src={user?.photoURL}
-                  alt=""
-                />
-              </span>
-            )}
-          </p>
+          <LazyLoad className="h-full   ">
+            <p className="">
+              <div
+                className="tooltip  tooltip-left"
+                data-tip={user?.displayName}
+              >
+                {user?.photoURL ? (
+                  <img className="h-12 w-12 rounded-full" src={user.photoURL} />
+                ) : (
+                  user && <FaUserCircle className="h-12 w-12" />
+                )}
+              </div>
+            </p>
+          </LazyLoad>
           {user ? (
             <Link onClick={handleLogout} className="btn mx-5">
               Log Out

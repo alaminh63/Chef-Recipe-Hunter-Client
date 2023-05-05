@@ -6,6 +6,7 @@ import Main from "../Pages/layout/Main";
 import Recipes from "../Pages/layout/Recipes";
 import Login from "../Pages/Login/Login";
 import Register from "../Pages/Register/Register";
+import NotFoundPage from "../Pages/Shared/NotFoundPage/NotFoundPage";
 import PrivateRoute from "./PrivateRoute";
 
 const router = createBrowserRouter([
@@ -26,6 +27,10 @@ const router = createBrowserRouter([
         path: "/login",
         element: <Login></Login>,
       },
+      {
+        path: "*",
+        element: <NotFoundPage></NotFoundPage>,
+      },
     ],
   },
   {
@@ -41,6 +46,10 @@ const router = createBrowserRouter([
         ),
         loader: ({ params }) =>
           fetch(`http://localhost:3000/information/${params.id}`),
+      },
+      {
+        path: "*",
+        element: <NotFoundPage></NotFoundPage>,
       },
     ],
   },

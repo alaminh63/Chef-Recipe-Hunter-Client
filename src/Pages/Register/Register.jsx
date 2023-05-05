@@ -122,7 +122,7 @@ const Register = () => {
                       className="rounded-3xl border-none  focus:bg-slate-500   bg-yellow-400 bg-opacity-50 px-6 py-2 text-center text-inherit placeholder-slate-200 shadow-lg outline backdrop-blur-md"
                       type="text"
                       name="photoURL"
-                      required
+                     
                       placeholder="Photo URL -example.com"
                     />
                   </div>

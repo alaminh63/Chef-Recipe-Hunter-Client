@@ -90,7 +90,7 @@ const ChefDetails = () => {
                     clipPath: "polygon(10% 0, 100% 0%, 100% 100%, 0 100%)",
                   }}
                 >
-                  <LazyLoad className="h-full  ">
+                  <LazyLoad className="h-full  "> 
                     <div 
                       className="h-full threshold={0.95}  onContentVisible={() => {console.log('loaded!')}} object-cover is-visible LazyLoad "
                       style={{
@@ -192,56 +192,7 @@ const ChefDetails = () => {
         </div>
       </section>
       <ToastContainer></ToastContainer>
-      <div className="grid md:grid-cols-4 my-8  md:max-w-[1200px] mx-auto">
-        <div className="card w-72 bg-base-100 shadow-xl image-full">
-          <figure>
-            <img src={profileUrl} alt="Shoes" />
-          </figure>
-          <div className="card-body">
-            <h2 className="card-title">Shoes!</h2>
-            <p>If a dog chews shoes whose shoes does he choose?</p>
-            <div className="card-actions justify-end">
-              <button className="btn btn-primary">Buy Now</button>
-            </div>
-          </div>
-        </div>
-        <div className="card w-72 bg-base-100 shadow-xl image-full">
-          <figure>
-            <img src={profileUrl} alt="Shoes" />
-          </figure>
-          <div className="card-body">
-            <h2 className="card-title">Shoes!</h2>
-            <p>If a dog chews shoes whose shoes does he choose?</p>
-            <div className="card-actions justify-end">
-              <button className="btn btn-primary">Buy Now</button>
-            </div>
-          </div>
-        </div>
-        <div className="card w-72 bg-base-100 shadow-xl image-full">
-          <figure>
-            <img src='{profileUrl}' alt="Shoes" />
-          </figure>
-          <div className="card-body">
-            <h2 className="card-title">Shoes!</h2>
-            <p>If a dog chews shoes whose shoes does he choose?</p>
-            <div className="card-actions justify-end">
-              <button className="btn btn-primary">Buy Now</button>
-            </div>
-          </div>
-        </div>
-        <div className="card w-72 bg-base-100 shadow-xl image-full">
-          <figure>
-            <img src={profileUrl} alt="Shoes" />
-          </figure>
-          <div className="card-body">
-            <h2 className="card-title">Shoes!</h2>
-            <p>If a dog chews shoes whose shoes does he choose?</p>
-            <div className="card-actions justify-end">
-              <button className="btn btn-primary">Buy Now</button>
-            </div>
-          </div>
-        </div>
-      </div>
+     
     </div>
   );
 };
