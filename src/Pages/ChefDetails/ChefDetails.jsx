@@ -28,11 +28,9 @@ const ChefDetails = () => {
   return (
     <div>
       <section className="">
-        
         <div className="banner-image2 ">
-     
           <NavigationBar></NavigationBar>
-      
+
           <div className="  flex items-center justify-center h-full w-full md:flex max-w-[1400px]  mx-auto  md:items-center md:justify-between flex-wrap-reverse   ">
             <div className="w-full">
               <div className="flex " style={{ height: "700px" }}>
@@ -41,7 +39,6 @@ const ChefDetails = () => {
                     <section className="h-full md:m-20 flex flex-col dark:bg-gray-700 shadow-xl">
                       <div className=" shadow-lg ">
                         <div className="flex flex-col items-center justify-evenly ">
-                          
                           <img
                             className="md:hidden ml-20 rounded-s-full h-[18rem] w-[15rem]"
                             src={profileUrl}
@@ -90,23 +87,19 @@ const ChefDetails = () => {
                     clipPath: "polygon(10% 0, 100% 0%, 100% 100%, 0 100%)",
                   }}
                 >
-                  <LazyLoad className="h-full  "> 
-                    <div 
+                  <LazyLoad className="h-full  ">
+                    <div
                       className="h-full threshold={0.95}  onContentVisible={() => {console.log('loaded!')}} object-cover is-visible LazyLoad "
                       style={{
                         backgroundImage: `url(${profileUrl})`,
                         backgroundRepeat: "no-repeat",
-
-                        
                       }}
                     ></div>
-                    
                   </LazyLoad>
                 </div>
               </div>
             </div>
           </div>
-          
         </div>
       </section>
 
@@ -126,9 +119,7 @@ const ChefDetails = () => {
         ))}
       </div>
 
-    
       <ToastContainer></ToastContainer>
-     
     </div>
   );
 };
